@@ -1,0 +1,18 @@
+{
+  "type": "library",
+  "name": "aeliot-tm/dependency-injection-helpers",
+  "description": "Dependency injection helpers library",
+  "license": "proprietary",
+  "autoload": {
+    "psr-4": {
+      "Aeliot\\DependencyInjection\\": ""
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "require": {
+    "php": "^7.0",
+    "doctrine/orm": "^2.5"
+  }
+}

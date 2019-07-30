@@ -43,10 +43,29 @@ class PrioritySorter
      */
     private static function getPriority(array $tags, string $attribute): int
     {
-        if (count($tags) > 1) {
+        $priorities = self::getPriorities($tags, $attribute);
+        if (count($priorities) > 1) {
             throw new \LogicException('Must not be more then one tag for ordering purposes');
         }
 
-        return reset($tags)[$attribute] ?? 0;
+        return $priorities ? reset($priorities) : 0;
+    }
+
+    /**
+     * @param array  $tags
+     * @param string $attribute
+     *
+     * @return array
+     */
+    private static function getPriorities(array $tags, string $attribute): array
+    {
+        $priorities = [];
+        foreach ($tags as $tag) {
+            if (array_key_exists($attribute, $tag)) {
+                $priorities[] = $tag[$attribute];
+            }
+        }
+
+        return $priorities;
     }
 }

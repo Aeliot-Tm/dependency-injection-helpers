@@ -8,31 +8,32 @@ namespace Aeliot\DependencyInjection\Helper;
 class PrioritySorter
 {
     /**
-     * @param array  $tags
+     * @param array  $tagScopes
      * @param bool   $isAscending
      * @param string $attribute
      *
      * @return array
      */
-    public static function sort(array $tags, bool $isAscending = true, string $attribute = 'priority'): array
+    public static function sort(array $tagScopes, bool $isAscending = true, string $attribute = 'priority'): array
     {
         uasort(
-            $tags,
-            function ($tagA, $tagB) use ($attribute, $isAscending): int {
-                $priorityA = self::getPriority($tagA, $attribute);
-                $priorityB = self::getPriority($tagB, $attribute);
+            $tagScopes,
+            function ($scopeA, $scopeB) use ($attribute, $isAscending): int {
+                $priorityA = self::getPriority($scopeA, $attribute);
+                $priorityB = self::getPriority($scopeB, $attribute);
                 if ($priorityA === $priorityB) {
-                    return 0;
-                }
-                if ($isAscending) {
-                    return ($priorityA < $priorityB) ? -1 : 1;
+                    $result = 0;
+                } elseif ($isAscending) {
+                    $result = ($priorityA < $priorityB) ? -1 : 1;
+                } else {
+                    $result = ($priorityA > $priorityB) ? -1 : 1;
                 }
 
-                return ($priorityA > $priorityB) ? -1 : 1;
+                return $result;
             }
         );
 
-        return $tags;
+        return $tagScopes;
     }
 
     /**

@@ -5,7 +5,12 @@
   "license": "proprietary",
   "autoload": {
     "psr-4": {
-      "Aeliot\\DependencyInjection\\": ""
+      "Aeliot\\DependencyInjection\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
     }
   },
   "config": {
@@ -14,5 +19,8 @@
   "require": {
     "php": "^7.0",
     "doctrine/orm": "^2.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.5"
   }
 }

@@ -2,7 +2,7 @@
   "type": "library",
   "name": "aeliot-tm/dependency-injection-helpers",
   "description": "Dependency injection helpers library",
-  "license": "proprietary",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "Aeliot\\DependencyInjection\\": "src/"
